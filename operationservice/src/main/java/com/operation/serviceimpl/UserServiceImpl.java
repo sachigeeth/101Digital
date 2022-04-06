@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional
     public ResponseEntity updateUser(User user) {
         ResponseEntity responseEntity;
         Optional<User> dbUser = this.userRepository.findById(user.getUserId());
@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional
     public ResponseEntity<User> deleteUser(Integer userId) {
         Optional<User> dbUser = this.userRepository.findById(userId);
         ResponseEntity<User> responseEntity;

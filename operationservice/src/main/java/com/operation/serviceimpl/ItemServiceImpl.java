@@ -51,7 +51,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional
     public ResponseEntity updateItem(Item item) {
         ResponseEntity responseEntity;
         Optional<Item> dbItem = this.itemRepository.findById(item.getItemId());
@@ -66,7 +66,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional
     public ResponseEntity<Item> deleteItem(Integer itemId) {
         Optional<Item> dbItem = this.itemRepository.findById(itemId);
         ResponseEntity<Item> responseEntity;

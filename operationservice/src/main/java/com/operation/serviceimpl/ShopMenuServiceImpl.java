@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,6 +34,7 @@ public class ShopMenuServiceImpl implements ShopMenuService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public ResponseEntity createMenu(ShopMenu shopMenu) {
         ResponseEntity responseEntity;
         this.shopMenuRepository.save(shopMenu);
@@ -40,6 +43,7 @@ public class ShopMenuServiceImpl implements ShopMenuService {
     }
 
     @Override
+    @Transactional
     public ResponseEntity updateMenu(ShopMenu shopMenu) {
         ResponseEntity responseEntity;
         Optional<ShopMenu> dbMenu = this.shopMenuRepository.findById(shopMenu.getShopMenuId());
@@ -53,6 +57,7 @@ public class ShopMenuServiceImpl implements ShopMenuService {
     }
 
     @Override
+    @Transactional
     public ResponseEntity<ShopMenu> deleteMenu(Integer shopMenuId) {
         Optional<ShopMenu> dbShopMenu = this.shopMenuRepository.findById(shopMenuId);
         ResponseEntity<ShopMenu> responseEntity;
