@@ -130,6 +130,8 @@ services:
       retries: 10
       start_period: 2m
   pg:
+    container_name: pg
+    hostname: pg
     image: postgres
     ports:
       - "5434:5432"
